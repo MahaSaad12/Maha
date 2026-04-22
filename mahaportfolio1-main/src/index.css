@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark glowing palette — deep ink with luminous green accent */
+    --background: 220 25% 5%;
+    --foreground: 40 25% 92%;
+
+    --ink: 220 30% 4%;
+    --ivory: 40 25% 92%;
+
+    --card: 220 25% 7%;
+    --card-foreground: 40 25% 92%;
+
+    --popover: 220 25% 7%;
+    --popover-foreground: 40 25% 92%;
+
+    --primary: 145 75% 60%;
+    --primary-foreground: 220 30% 4%;
+
+    --primary-glow: 145 85% 65%;
+    --accent-amber: 145 75% 60%;
+
+    --secondary: 220 20% 10%;
+    --secondary-foreground: 40 25% 92%;
+
+    --muted: 220 18% 12%;
+    --muted-foreground: 40 10% 60%;
+
+    --accent: 145 75% 60%;
+    --accent-foreground: 220 30% 4%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 40 25% 92%;
+
+    --border: 220 15% 15%;
+    --input: 220 15% 15%;
+    --ring: 145 75% 60%;
+
+    --radius: 0.25rem;
+
+    --gradient-aurora: radial-gradient(ellipse at top, hsl(145 75% 60% / 0.18), transparent 60%),
+                       radial-gradient(ellipse at bottom right, hsl(145 85% 50% / 0.12), transparent 55%);
+    --gradient-text: linear-gradient(135deg, hsl(var(--primary-glow)), hsl(40 25% 92%));
+    --shadow-soft: 0 30px 80px -30px hsl(220 30% 0% / 0.6);
+    --shadow-glow: 0 0 100px -10px hsl(var(--primary-glow) / 0.4);
+
+    --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+    --sidebar-background: 220 25% 5%;
+    --sidebar-foreground: 40 10% 70%;
+    --sidebar-primary: 145 75% 60%;
+    --sidebar-primary-foreground: 220 30% 4%;
+    --sidebar-accent: 220 20% 10%;
+    --sidebar-accent-foreground: 40 25% 92%;
+    --sidebar-border: 220 15% 15%;
+    --sidebar-ring: 145 75% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+    color: hsl(var(--ivory));
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Fraunces', 'Times New Roman', serif;
+    font-optical-sizing: auto;
+    letter-spacing: -0.03em;
+  }
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .text-gradient {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-glow {
+    text-shadow: 0 0 40px hsl(var(--primary-glow) / 0.6),
+                 0 0 80px hsl(var(--primary-glow) / 0.3);
+  }
+  .bg-aurora {
+    background-image: var(--gradient-aurora);
+  }
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+  }
+  .marquee {
+    animation: marquee 40s linear infinite;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .starfield {
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, hsl(var(--foreground) / 0.5), transparent),
+      radial-gradient(1px 1px at 70% 60%, hsl(var(--foreground) / 0.4), transparent),
+      radial-gradient(1px 1px at 40% 80%, hsl(var(--foreground) / 0.3), transparent),
+      radial-gradient(1.5px 1.5px at 85% 20%, hsl(var(--primary-glow) / 0.4), transparent),
+      radial-gradient(1px 1px at 10% 70%, hsl(var(--foreground) / 0.3), transparent),
+      radial-gradient(1px 1px at 55% 15%, hsl(var(--foreground) / 0.4), transparent),
+      radial-gradient(1px 1px at 90% 85%, hsl(var(--primary-glow) / 0.3), transparent);
+    background-size: 800px 800px;
+  }
+}
